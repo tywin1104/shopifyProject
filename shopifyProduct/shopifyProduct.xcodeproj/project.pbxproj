@@ -16,6 +16,7 @@
 		C2765EB31FE47ACD00E129FE /* shopifyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2765EB21FE47ACD00E129FE /* shopifyAPI.swift */; };
 		C2765EB51FE47D6A00E129FE /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2765EB41FE47D6A00E129FE /* ProductImage.swift */; };
 		C2765EB71FE480CB00E129FE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2765EB61FE480CB00E129FE /* CustomTableViewCell.swift */; };
+		C2765EB91FE48D7A00E129FE /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2765EB81FE48D7A00E129FE /* ProductViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C2765EB21FE47ACD00E129FE /* shopifyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shopifyAPI.swift; sourceTree = "<group>"; };
 		C2765EB41FE47D6A00E129FE /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		C2765EB61FE480CB00E129FE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C2765EB81FE48D7A00E129FE /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				C2765EB21FE47ACD00E129FE /* shopifyAPI.swift */,
 				C2765EB41FE47D6A00E129FE /* ProductImage.swift */,
 				C2765EB61FE480CB00E129FE /* CustomTableViewCell.swift */,
+				C2765EB81FE48D7A00E129FE /* ProductViewController.swift */,
 			);
 			path = shopifyProduct;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				C2765EB71FE480CB00E129FE /* CustomTableViewCell.swift in Sources */,
 				C2765EA11FE4730B00E129FE /* ViewController.swift in Sources */,
 				C2765E9F1FE4730B00E129FE /* AppDelegate.swift in Sources */,
+				C2765EB91FE48D7A00E129FE /* ProductViewController.swift in Sources */,
 				C2765EB51FE47D6A00E129FE /* ProductImage.swift in Sources */,
 				C2765EB11FE473E300E129FE /* Product.swift in Sources */,
 				C2765EB31FE47ACD00E129FE /* shopifyAPI.swift in Sources */,
