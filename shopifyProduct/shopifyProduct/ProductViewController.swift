@@ -33,13 +33,25 @@ class ProductViewController: UIViewController {
 
     var product : Product?
     
-    @IBOutlet weak var productDescriptionLabel: UILabel!
+    
+//    @IBOutlet weak var productTitleLabel: UILabel!
+//    @IBOutlet weak var productImageView: UIImageView!
+    
+    
     @IBOutlet weak var productTitleLabel: UILabel!
+    @IBOutlet weak var productDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var productTypeLabel: UILabel!
+    @IBOutlet weak var productTagsLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         productTitleLabel.text = product?.title
         productDescriptionLabel.text = product?.body_html
+        
+        productTypeLabel.text =
+        "Product Type: \((product?.product_type)!)"
+        productTagsLabel.text = "Product Tags: \((product?.tags)!)"
         
         let urlString = product?.images[0].src
         let url = URL(string: urlString!)

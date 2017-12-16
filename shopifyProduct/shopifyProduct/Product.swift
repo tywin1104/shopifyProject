@@ -12,5 +12,7 @@ struct Product :Decodable {
     var body_html : String
     var images : [ProductImage] 
     var title : String
+    var tags : String
+    var product_type : String
 }
 
