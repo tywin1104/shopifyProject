@@ -8,9 +8,21 @@
 
 import UIKit
 
+extension ViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var products = [Product]()
+    var filteredProducts = [Product]()
     @IBOutlet weak var tableView: UITableView!
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,18 +31,50 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         tableView.dataSource = self
         tableView.delegate = self
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search For Product Titles"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
     }
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredProducts = products.filter({( product : Product) -> Bool in
+            return product.title.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredProducts.count
+        }
         return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! CustomTableViewCell
+        var product : Product
+        if isFiltering() {
+            product = filteredProducts[indexPath.row]
+        }else {
+            product = products[indexPath.row]
+        }
+        cell.productTitleLabel.text = product.title
+        cell.productDescriptionLabel.text = product.body_html
         
-        cell.productTitleLabel.text = products[indexPath.row].title
-        cell.productDescriptionLabel.text = products[indexPath.row].body_html
-        
-        let urlString = products[indexPath.row].images[0].src
+        let urlString = product.images[0].src
         let url = URL(string: urlString)
         cell.productImageView.downloadedFrom(url: url!)
         
@@ -48,6 +92,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ProductViewController {
             destination.product = products[(tableView.indexPathForSelectedRow?.row)!]
+            if isFiltering() {
+                destination.product = filteredProducts[(tableView.indexPathForSelectedRow?.row)!]
+            } else {
+                destination.product = products[(tableView.indexPathForSelectedRow?.row)!]
+            }
         }
     }
     
@@ -71,7 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     print("JSON ERROR!")
                 }
             }
-            }.resume()
+        }.resume()
     }
 
 }
