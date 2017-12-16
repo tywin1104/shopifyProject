@@ -29,6 +29,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.productTitleLabel.text = products[indexPath.row].title
         cell.productDescriptionLabel.text = products[indexPath.row].body_html
+        
+        let urlString = products[indexPath.row].images[0].src
+        let url = URL(string: urlString)
+        cell.productImageView.downloadedFrom(url: url!)
         return cell
     }
     
