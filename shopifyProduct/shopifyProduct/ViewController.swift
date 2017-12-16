@@ -33,7 +33,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let urlString = products[indexPath.row].images[0].src
         let url = URL(string: urlString)
         cell.productImageView.downloadedFrom(url: url!)
+        
+        cell.cellView.layer.cornerRadius = cell.cellView.frame.height/2
+        cell.productImageView.layer.cornerRadius = cell.productImageView.frame.height/2
+        
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
